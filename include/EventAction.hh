@@ -31,7 +31,12 @@ class EventAction : public G4UserEventAction
 
     G4int GetEventID() { return fEventID; }
     void SetEventID(G4int eventID) { fEventID=eventID; }
-    
+
+    // Tracking action function
+    void AddEdep_pi0(G4double Edep) { fEPi0 += Edep; }
+    void AddEscapeKine(G4double Edep) {  fEscapeKine += Edep; }
+    void AddEscape_KineAndNonBaryonMass(G4double Edep) { fEscapeKineAndNonBaryonMass += Edep; }
+
     // Particle information
     std::vector<G4int>&    GetDetectorID()              { return detectorID; }
     std::vector<G4int>&    GetParticlePDG()             { return particlePDG; }
@@ -118,6 +123,12 @@ class EventAction : public G4UserEventAction
     G4int fNEmc = kNEMc;
     G4int fNWSci = kNWSci ;
     G4int fNShash = kNShash;
+
+    G4double fEPi0;
+    G4double fEscapeKine;
+    G4double fEscapeKineAndNonBaryonMass;
+
+
 };
 
 }  // namespace ZDC

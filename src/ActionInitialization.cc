@@ -3,6 +3,7 @@
 #include "EventAction.hh"
 #include "PrimaryGeneratorAction.hh"
 #include "RunAction.hh"
+#include "TrackingAction.hh"
 
 using namespace ZDC;
 
@@ -26,6 +27,7 @@ void ActionInitialization::Build() const
     auto eventAction = new EventAction;
     SetUserAction(eventAction);
     SetUserAction(new RunAction(eventAction));
+    SetUserAction(new TrackingAction(eventAction));
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

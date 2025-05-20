@@ -38,6 +38,9 @@ RunAction::RunAction(EventAction* eventAction)
   //
   analysisManager->CreateNtuple("ZDC", "Hits");
   analysisManager->CreateNtupleIColumn("EventID");
+  analysisManager->CreateNtupleDColumn("E.pi0");
+  analysisManager->CreateNtupleDColumn("E.EscapeKin");
+  analysisManager->CreateNtupleDColumn("E.EscapeKineAndNonBaryonMass");
   
   if (UsePbWO4EMCal) 
   analysisManager->CreateNtupleDColumn("Sec.EdepEMC");
