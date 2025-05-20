@@ -129,7 +129,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     auto clad1 = G4Material::GetMaterial("Pethylene");
     auto clad2 = G4Material::GetMaterial("FPethylene");
     auto tyvek = G4Material::GetMaterial("Tyvek");
-    auto tungsten = G4Material::GetMaterial("G4_Cu");
+    auto tungsten = G4Material::GetMaterial("G4_W");
     auto PbWO4 = G4Material::GetMaterial("G4_PbWO4");
 
     //para
@@ -202,8 +202,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     G4LogicalVolume *array_LV_WSci = new G4LogicalVolume(fArray_Box_WSci, air, "Array_LV_WSci");
     G4VPhysicalVolume *fArray_Phy_WSci;
     for (G4int i = 0; i < vNWSci * vNWSci; i++){
-        G4double x_layer = -vWSciArraySize / 2 * (vNWSci - 1) + G4int(i % vNWSci) * vWSciArraySize;
-        G4double y_layer = -vWSciArraySize / 2 * (vNWSci - 1) + G4int(i / vNWSci) * vWSciArraySize;
+        G4double x_layer = -vWSciArraySize / 2 * (vNWSci - 1) + G4int(i % vNWSci) * vWSciArraySize ;
+        G4double y_layer = -vWSciArraySize / 2 * (vNWSci - 1) + G4int(i / vNWSci) * vWSciArraySize ;
         G4double z_layer = CurrentZPos;
         fArray_Phy_WSci = new G4PVPlacement(0, G4ThreeVector(x_layer, y_layer,  z_layer), array_LV_WSci, "LayerWSci", worldLogical, false, (i+1)*10000+3000000);
 
@@ -872,7 +872,7 @@ void DetectorConstruction::DefineMaterials()
     nistManager->FindOrBuildMaterial("G4_Fe");
     // PbWO4
     nistManager->FindOrBuildMaterial("G4_PbWO4");
-    //copper
+    // Cu
     nistManager->FindOrBuildMaterial("G4_Cu");
 
     // Liquid argon material

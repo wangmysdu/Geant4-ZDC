@@ -48,9 +48,15 @@ int main(int argc, char** argv)
     }
 
     // set random seed
-    G4long seed = time(NULL);
     G4Random::setTheEngine(new CLHEP::RanecuEngine);
-    G4Random::setTheSeed(seed);
+    
+    struct timespec ts;
+    clock_gettime(CLOCK_REALTIME, &ts);
+    long randseed =  ts.tv_sec * 1000000000L + ts.tv_nsec;
+    std::cout << "Using randomseed " << randseed << std::endl;
+    G4Random::setTheSeed(randseed);
+
+    
     G4String macro;
     G4String session;
     G4bool verboseBestUnits = true;

@@ -65,3 +65,26 @@
 #
 # For file-based drivers, use this to create an empty detector view:
 #/vis/viewer/flush
+
+# 按粒子类型设置轨迹颜色
+/vis/modeling/trajectories/create/drawByParticleID
+
+# 设置颜色（格式为 R G B），值范围是 0.0 ~ 1.0
+/vis/modeling/trajectories/drawByParticleID/set e-      0.0 0.0 1.0   
+/vis/modeling/trajectories/drawByParticleID/set e+      1.0 0.0 0.0   
+/vis/modeling/trajectories/drawByParticleID/set gamma   1.0 1.0 0.0   
+/vis/modeling/trajectories/drawByParticleID/set mu-     0.0 1.0 0.0   
+/vis/modeling/trajectories/drawByParticleID/set mu+     0.0 1.0 0.0   
+/vis/modeling/trajectories/drawByParticleID/set pi+     1.0 0.0 1.0  
+/vis/modeling/trajectories/drawByParticleID/set pi-     1.0 0.0 1.0   
+/vis/modeling/trajectories/drawByParticleID/set proton  0.5 0.5 0.5   
+/vis/modeling/trajectories/drawByParticleID/set neutron 0.0 0.0 0.0   
+/vis/modeling/trajectories/drawByParticleID/set opticalphoton  0.0 1.0 1.0  
+
+# 设置轨迹线宽度（可选）
+/vis/trajectory/setLineWidth 3
+
+/vis/viewer/update
+
+
+

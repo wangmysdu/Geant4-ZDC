@@ -2,23 +2,23 @@
 /control/execute geometry.mac
 /det/WSci/NModule 5
 /run/geometryModified
-/det/WSci/NLayer 50
+/det/WSci/NLayer 42
 /run/geometryModified
-/det/WSci/Size 100 mm
+/det/WSci/Size 50 mm
 /run/geometryModified
-/det/WSci/WThick 7.0 mm
+/det/WSci/WThick 3.5 mm
 /run/geometryModified
-/det/WSci/SciThick 2.0 mm
+/det/WSci/SciThick 1.0 mm
 /run/geometryModified
-/det/Shash/NModule 5
+/det/Shash/NModule 4
 /run/geometryModified
-/det/Shash/NLayer 50
+/det/Shash/NLayer 15
 /run/geometryModified
-/det/Shash/ScinThick 2.0 mm
+/det/Shash/ScinThick 7.6 mm
 /run/geometryModified
-/det/Shash/LeadThick 7.0 mm
+/det/Shash/LeadThick 29.0 mm
 /run/geometryModified
-/det/Shash/Size 100 mm
+/det/Shash/Size 120 mm
 /run/geometryModified
 /det/NFiberHole 16
 /run/geometryModified
@@ -49,6 +49,7 @@
 /vis/viewer/set/autoRefresh true
 /vis/viewer/refresh
 /vis/verbose warnings
+/vis/modeling/trajectories/create/drawByParticleID
 /control/execute gui.mac
 /gui/addMenu file File
 /gui/addButton file Quit exit

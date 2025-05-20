@@ -120,6 +120,10 @@ void EventAction::BeginOfEventAction(const G4Event * /*event*/){
     particleTime.clear();
     time(&start);
     end = time(NULL);
+
+    fEPi0 = 0;
+    fEscapeKine = 0;
+    fEscapeKineAndNonBaryonMass = 0;
   }
 
   //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -195,24 +199,24 @@ void EventAction::EndOfEventAction(const G4Event *event)
             int NModule = (aHit->GetDetectorID()- 4000000)/10000 -1;
             EEmcModule[NModule] += aHit->GetEdep();
         }
-        //199-216
-        detectorID.push_back(aHit->GetDetectorID());
-        particlePDG.push_back(aHit->GetPID());
-        particleEdep.push_back(aHit->GetEdep());
-        particleTrackLength.push_back(aHit->GetTrackLength());
-        particleInPx.push_back(aHit->GetInMom().x());
-        particleInPy.push_back(aHit->GetInMom().y());
-        particleInPz.push_back(aHit->GetInMom().z());
-        particleOutPx.push_back(aHit->GetOutMom().x());
-        particleOutPy.push_back(aHit->GetOutMom().y());
-        particleOutPz.push_back(aHit->GetOutMom().z());
-        particleInx.push_back(aHit->GetInPos().x());
-        particleIny.push_back(aHit->GetInPos().y());
-        particleInz.push_back(aHit->GetInPos().z());
-        particleOutx.push_back(aHit->GetOutPos().x());
-        particleOuty.push_back(aHit->GetOutPos().y());
-        particleOutz.push_back(aHit->GetOutPos().z());
-        particleTime.push_back(aHit->GetTime());
+
+        //detectorID.push_back(aHit->GetDetectorID());
+        //particlePDG.push_back(aHit->GetPID());
+        //particleEdep.push_back(aHit->GetEdep());
+        //particleTrackLength.push_back(aHit->GetTrackLength());
+        //particleInPx.push_back(aHit->GetInMom().x());
+        //particleInPy.push_back(aHit->GetInMom().y());
+        //particleInPz.push_back(aHit->GetInMom().z());
+        //particleOutPx.push_back(aHit->GetOutMom().x());
+        //particleOutPy.push_back(aHit->GetOutMom().y());
+        //particleOutPz.push_back(aHit->GetOutMom().z());
+        //particleInx.push_back(aHit->GetInPos().x());
+        //particleIny.push_back(aHit->GetInPos().y());
+        //particleInz.push_back(aHit->GetInPos().z());
+        //particleOutx.push_back(aHit->GetOutPos().x());
+        //particleOuty.push_back(aHit->GetOutPos().y());
+        //particleOutz.push_back(aHit->GetOutPos().z());
+        //particleTime.push_back(aHit->GetTime());
         
     }
 
@@ -246,6 +250,9 @@ void EventAction::EndOfEventAction(const G4Event *event)
     // fill ntuple
     G4int BranchIdx = 0;
     analysisManager->FillNtupleIColumn(BranchIdx++, fEventID);
+    analysisManager->FillNtupleDColumn(BranchIdx++, fEPi0);
+    analysisManager->FillNtupleDColumn(BranchIdx++, fEscapeKine);
+    analysisManager->FillNtupleDColumn(BranchIdx++, fEscapeKineAndNonBaryonMass);
 
     if (UsePbWO4EMCal) analysisManager->FillNtupleDColumn(BranchIdx++, fPbWO4TotalEdep);
     analysisManager->FillNtupleDColumn(BranchIdx++, fSecEdepTotSen[2]);
