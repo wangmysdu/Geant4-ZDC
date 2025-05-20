@@ -30,4 +30,4 @@
 /gps/energy 10. GeV
 /gps/direction 0 0 1
 
-/run/beamOn 300
+/run/beamOn 200
