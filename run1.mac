@@ -24,7 +24,7 @@
 /gps/particle neutron
 /gps/pos/type Plane
 /gps/pos/shape Circle
-/gps/pos/centre 0. 0. -200. cm
+/gps/pos/centre 1. 1. -200. cm
 /gps/pos/radius 1. um
 
 /gps/energy 10. GeV
