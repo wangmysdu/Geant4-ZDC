@@ -1,0 +1,33 @@
+# Macro file for example My
+# 
+# Can be run in batch, without graphic
+# or interactively: Idle> /control/execute run1.mac
+#
+# Change the default number of workers (in multi-threading mode) 
+#/run/numberOfThreads 4
+#
+# Initialize kernel
+
+# Create a particle filter. Configure to pass only gammas. Then
+# invert to pass anything other than gammas. Set verbose printout,
+# and then deactivate filter
+#/vis/filtering/trajectories/create/particleFilter
+#/vis/filtering/trajectories/particleFilter-0/add opticalphoton
+#/vis/filtering/trajectories/particleFilter-0/invert true
+#/vis/filtering/trajectories/particleFilter-0/verbose true
+#/vis/filtering/trajectories/particleFilter-0/active true
+
+/control/execute geometry.mac
+
+/run/initialize
+
+/gps/particle neutron
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/centre 0. 0. -200. cm
+/gps/pos/radius 1. um
+
+/gps/energy 10. GeV
+/gps/direction 0 0 1
+
+/run/beamOn 1000

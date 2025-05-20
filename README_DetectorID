@@ -1,0 +1,46 @@
+/* Structure: front plate + (reflector + scintillator + reflector + lead) + back plate
+ *
+ * Detector ID
+ *
+ * (Front) 2nd detector, 1st detector (End with SiPM)
+ * ID:     2000000        1000000
+ * 
+ * Module:   10000*(i+1) 
+ *
+ * Layer:  
+ *     Sintillator: 1000+i*10
+ *     Lead:        2000+i*10
+ *     relector 1:  3000+20*i
+ *     relector 2:  3000+10+20*i
+ *
+ *
+ *     TiO2 coating: 1
+ *     Front-end aluminum plate: 2
+ *     Back-end aluminum plate:  3
+ *
+ * fiber structure: hole -> clad2 -> clad1 ->core  
+ *     hole:  10+i (16 in total)
+ *     clad2: 4
+ *     clad1: 5
+ *     core:  6
+ *     mirror: 30+i
+ *
+ *     SimPM: 50+i
+ *
+ *     Rod hole: 70+i
+ *     Rod: 7
+ *
+ *  Front   0 1 2 3 4 5 6 7 8 9 10 11 12 13 14  SiPM
+ *          ----------------------------------> z
+ * 
+ *
+ *                Front View
+ *                --- --- ---
+ *   ^           | 6 | 7 | 8 |
+ * y |            --- --- ---
+ *   |           | 3 | 4 | 5 |
+ *    ----> x     --- --- ---
+ *               | 0 | 1 | 2 |
+ *                --- --- ---
+ *
+*/

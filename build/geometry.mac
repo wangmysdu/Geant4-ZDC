@@ -1,0 +1,19 @@
+#for the WSci sector
+/det/WSci/NModule      5
+/det/WSci/NLayer       50
+/det/WSci/Size         100  mm
+/det/WSci/WThick       7.0  mm
+/det/WSci/SciThick     2.0  mm
+
+
+#for the PbWO4 sector
+/det/Shash/NModule     5
+/det/Shash/NLayer      50
+/det/Shash/ScinThick   2.0  mm
+/det/Shash/LeadThick   7.0  mm
+/det/Shash/Size        100  mm
+
+#for fiber
+/det/NFiberHole        16
+
+/det/InitGeo

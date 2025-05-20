@@ -1,0 +1,16 @@
+- Keep magnetic field ? (Will be in tracker)
+- What to do with vis.tutor?
+- RANDOM NUMBERS HANDLING - keep it here?
+
+2025-02-05 Ye
+- Add fiber, hole, reflector, SiPM and others for WSci.
+- Energy deposition of each module(total + scintillator) is stored.  
+- The Shashlik detector signal is divided to two separate segmentations. 
+
+2025-02-13 Ye
+- Chagne variable name from "SiPM" to "Sipm", "EmC" to "Emc".
+- Fix scintillation light bug that no scintillation light is generated.
+- Add SiPM/PMT photons readout with the "SiPMSD" sensitive detector method.
+- Suggest to use smaller value of scintillation light yield for fast simulation, the actual light yield of PbWO4 400/MeV and plastic scintillator 8000/MeV.
+- NPE is stored for each detector array and each module of array separately.
+

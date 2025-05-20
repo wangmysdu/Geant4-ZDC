@@ -1,0 +1,28 @@
+/det/Emc/NModule (int)
+# the next command must be followed by the command in above
+/evt/Emc/NModule (same value as above)
+/det/Emc/Size (double *Unit)
+/det/Emc/Length 
+
+/det/WSci/NModule (int)
+# the next command must be followed by the command in above
+/evt/WSci/NModule 6
+/det/WSci/NLayer 
+/det/WSci/Size (double *Unit)
+/det/WSci/WThick
+/det/WSci/SciThick
+
+/det/Shash/NModule 
+/evt/Shash/NModule
+/det/Shash/NLayer
+/det/Shash/ScinThick
+/det/Shash/LeadThick
+/det/Shash/Size
+
+/det/NFiberHole (int)
+
+/det/InitGeo # this command must be called to apply any geometry update
+
+# command could be placed in "init_vis.mac" before /run/initialize to change the visualization
+# "Make" command will overwrite the init_vis.mac file in build
+
