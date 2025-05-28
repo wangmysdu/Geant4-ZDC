@@ -129,7 +129,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     auto clad1 = G4Material::GetMaterial("Pethylene");
     auto clad2 = G4Material::GetMaterial("FPethylene");
     auto tyvek = G4Material::GetMaterial("Tyvek");
-    auto tungsten = G4Material::GetMaterial("G4_W");
+    auto tungsten = G4Material::GetMaterial("G4_Cu");
     auto PbWO4 = G4Material::GetMaterial("G4_PbWO4");
 
     //para
@@ -251,10 +251,17 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     auto fHoleSolid_0 = new G4Tubs("HoleTubs_0", 0., kHoleDiameter / 2., vWSciHoleLength / 2., 0, 360);
     fHoleLogical_0 = new G4LogicalVolume(fHoleSolid_0, air, "HoleLogical_0");
     G4VPhysicalVolume *fHolePhysical_0;
+    G4int holesPerRow = std::sqrt(vNFiberHole);
+    G4double step = vWSciSize / holesPerRow;
+    G4double startOffset = step / 2.0;
     for (G4int i = 0; i < vNFiberHole; i++){
         G4double z_hole = (kFiberBackLength - kFiberFrontLength) / 2.;
-        G4double x_hole = -(vWSciSize / 2.0) + vWSciSize / 8.0 + G4int(i % 4) * vWSciSize / 4.0;
-        G4double y_hole = -(vWSciSize / 2.0) + vWSciSize / 8.0 + G4int(i / 4) * vWSciSize / 4.0;
+        G4int col = i % holesPerRow;
+        G4int row = i / holesPerRow;
+        G4double x_hole = -(vWSciSize/2.0) + startOffset + col * step;
+        G4double y_hole = -(vWSciSize/2.0) + startOffset + row * step;
+        // G4double x_hole = -(vWSciSize / 2.0) + vWSciSize / 8.0 + G4int(i % 4) * vWSciSize / 4.0;
+        // G4double y_hole = -(vWSciSize / 2.0) + vWSciSize / 8.0 + G4int(i / 4) * vWSciSize / 4.0;
         fHolePhysical_0 = new G4PVPlacement(0, G4ThreeVector(x_hole, y_hole, z_hole), fHoleLogical_0, "HolePhysical_0", array_LV_WSci, false, i+10, false);
     }
 
@@ -401,10 +408,14 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     auto fHoleSolid_1 = new G4Tubs("HoleTubs_1", 0., kHoleDiameter / 2., vShashHoleLength / 2., 0, 360);
     fHoleLogical_1 = new G4LogicalVolume(fHoleSolid_1, air, "HoleLogical_1");
     G4VPhysicalVolume *fHolePhysical_1;
-    for (G4int i = 0; i < vNFiberHole; i++){
+    for (G4int i = 0; i < vNFiberHole; i++) {
+        G4int col = i % holesPerRow;
+        G4int row = i / holesPerRow;
+        G4double x_hole = -(vWSciSize/2.0) + startOffset + col * step;
+        G4double y_hole = -(vWSciSize/2.0) + startOffset + row * step;
         G4double z_hole = (kFiberBackLength - kFiberFrontLength) / 2.;
-        G4double x_hole = -(vShashSize / 2.0) + vShashSize / 8.0 + G4int(i % 4) * vShashSize / 4.0;
-        G4double y_hole = -(vShashSize / 2.0) + vShashSize / 8.0 + G4int(i / 4) * vShashSize / 4.0;
+        // G4double x_hole = -(vShashSize / 2.0) + vShashSize / 8.0 + G4int(i % 4) * vShashSize / 4.0;
+        // G4double y_hole = -(vShashSize / 2.0) + vShashSize / 8.0 + G4int(i / 4) * vShashSize / 4.0;
         fHolePhysical_1 = new G4PVPlacement(0, G4ThreeVector(x_hole, y_hole, z_hole), fHoleLogical_1, "HolePhysical_1", array_LV_1, false, i+10, false);
     }
 
@@ -546,10 +557,14 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     auto fHoleSolid_2 = new G4Tubs("HoleTubs_2", 0., kHoleDiameter / 2., vShashHoleLength / 2., 0, 360);
     fHoleLogical_2 = new G4LogicalVolume(fHoleSolid_2, air, "HoleLogical_2");
     G4VPhysicalVolume *fHolePhysical_2;
-    for (G4int i = 0; i < vNFiberHole; i++){
+    for (G4int i = 0; i < vNFiberHole; i++) {
+        G4int col = i % holesPerRow;
+        G4int row = i / holesPerRow;
+        G4double x_hole = -(vWSciSize/2.0) + startOffset + col * step;
+        G4double y_hole = -(vWSciSize/2.0) + startOffset + row * step;
         G4double z_hole = (kFiberBackLength - kFiberFrontLength) / 2.;
-        G4double x_hole = -(vShashSize / 2.0) + vShashSize / 8.0 + G4int(i % 4) * vShashSize / 4.0;
-        G4double y_hole = -(vShashSize / 2.0) + vShashSize / 8.0 + G4int(i / 4) * vShashSize / 4.0;
+        // G4double x_hole = -(vShashSize / 2.0) + vShashSize / 8.0 + G4int(i % 4) * vShashSize / 4.0;
+        // G4double y_hole = -(vShashSize / 2.0) + vShashSize / 8.0 + G4int(i / 4) * vShashSize / 4.0;
         fHolePhysical_2 = new G4PVPlacement(0, G4ThreeVector(x_hole, y_hole, z_hole), fHoleLogical_2, "HolePhysical_2", array_LV_2, false, i+10, false);
     }
     G4cout << "Placed physical volume: " << fHolePhysical_2->GetName() << G4endl;
