@@ -408,11 +408,14 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     auto fHoleSolid_1 = new G4Tubs("HoleTubs_1", 0., kHoleDiameter / 2., vShashHoleLength / 2., 0, 360);
     fHoleLogical_1 = new G4LogicalVolume(fHoleSolid_1, air, "HoleLogical_1");
     G4VPhysicalVolume *fHolePhysical_1;
+    G4int holesPerRow_1 = std::sqrt(vNFiberHole);
+    G4double step_1 = vShashSize / holesPerRow;
+    G4double startOffset_1 = step_1 / 2.0;
     for (G4int i = 0; i < vNFiberHole; i++) {
-        G4int col = i % holesPerRow;
-        G4int row = i / holesPerRow;
-        G4double x_hole = -(vWSciSize/2.0) + startOffset + col * step;
-        G4double y_hole = -(vWSciSize/2.0) + startOffset + row * step;
+        G4int col = i % holesPerRow_1;
+        G4int row = i / holesPerRow_1;
+        G4double x_hole = -(vShashSize/2.0) + startOffset_1 + col * step_1;
+        G4double y_hole = -(vShashSize/2.0) + startOffset_1 + row * step_1;
         G4double z_hole = (kFiberBackLength - kFiberFrontLength) / 2.;
         // G4double x_hole = -(vShashSize / 2.0) + vShashSize / 8.0 + G4int(i % 4) * vShashSize / 4.0;
         // G4double y_hole = -(vShashSize / 2.0) + vShashSize / 8.0 + G4int(i / 4) * vShashSize / 4.0;
@@ -557,11 +560,14 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     auto fHoleSolid_2 = new G4Tubs("HoleTubs_2", 0., kHoleDiameter / 2., vShashHoleLength / 2., 0, 360);
     fHoleLogical_2 = new G4LogicalVolume(fHoleSolid_2, air, "HoleLogical_2");
     G4VPhysicalVolume *fHolePhysical_2;
+    G4int holesPerRow_2 = std::sqrt(vNFiberHole);
+    G4double step_2 = vShashSize / holesPerRow;
+    G4double startOffset_2 = step_2 / 2.0;
     for (G4int i = 0; i < vNFiberHole; i++) {
-        G4int col = i % holesPerRow;
-        G4int row = i / holesPerRow;
-        G4double x_hole = -(vWSciSize/2.0) + startOffset + col * step;
-        G4double y_hole = -(vWSciSize/2.0) + startOffset + row * step;
+        G4int col = i % holesPerRow_2;
+        G4int row = i / holesPerRow_2;
+        G4double x_hole = -(vShashSize/2.0) + startOffset_2 + col * step_2;
+        G4double y_hole = -(vShashSize/2.0) + startOffset_2 + row * step_2;
         G4double z_hole = (kFiberBackLength - kFiberFrontLength) / 2.;
         // G4double x_hole = -(vShashSize / 2.0) + vShashSize / 8.0 + G4int(i % 4) * vShashSize / 4.0;
         // G4double y_hole = -(vShashSize / 2.0) + vShashSize / 8.0 + G4int(i / 4) * vShashSize / 4.0;
