@@ -202,8 +202,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     G4LogicalVolume *array_LV_WSci = new G4LogicalVolume(fArray_Box_WSci, air, "Array_LV_WSci");
     G4VPhysicalVolume *fArray_Phy_WSci;
     for (G4int i = 0; i < vNWSci * vNWSci; i++){
-        G4double x_layer = -vWSciArraySize / 2 * (vNWSci - 1) + G4int(i % vNWSci) * vWSciArraySize ;
-        G4double y_layer = -vWSciArraySize / 2 * (vNWSci - 1) + G4int(i / vNWSci) * vWSciArraySize ;
+        G4double x_layer = -vWSciArraySize / 2 * (vNWSci - 1) + G4int(i % vNWSci) * vWSciArraySize;
+        G4double y_layer = -vWSciArraySize / 2 * (vNWSci - 1) + G4int(i / vNWSci) * vWSciArraySize;
         G4double z_layer = CurrentZPos;
         fArray_Phy_WSci = new G4PVPlacement(0, G4ThreeVector(x_layer, y_layer,  z_layer), array_LV_WSci, "LayerWSci", worldLogical, false, (i+1)*10000+3000000);
 
@@ -251,10 +251,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     auto fHoleSolid_0 = new G4Tubs("HoleTubs_0", 0., kHoleDiameter / 2., vWSciHoleLength / 2., 0, 360);
     fHoleLogical_0 = new G4LogicalVolume(fHoleSolid_0, air, "HoleLogical_0");
     G4VPhysicalVolume *fHolePhysical_0;
-    G4int holesPerRow = std::sqrt(vNFiberHole);
+    G4int holesPerRow = std::sqrt(vNFiberHole_WSci);
     G4double step = vWSciSize / holesPerRow;
     G4double startOffset = step / 2.0;
-    for (G4int i = 0; i < vNFiberHole; i++){
+    for (G4int i = 0; i < vNFiberHole_WSci; i++){
         G4double z_hole = (kFiberBackLength - kFiberFrontLength) / 2.;
         G4int col = i % holesPerRow;
         G4int row = i / holesPerRow;
@@ -408,10 +408,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     auto fHoleSolid_1 = new G4Tubs("HoleTubs_1", 0., kHoleDiameter / 2., vShashHoleLength / 2., 0, 360);
     fHoleLogical_1 = new G4LogicalVolume(fHoleSolid_1, air, "HoleLogical_1");
     G4VPhysicalVolume *fHolePhysical_1;
-    G4int holesPerRow_1 = std::sqrt(vNFiberHole);
-    G4double step_1 = vShashSize / holesPerRow;
+    G4int holesPerRow_1 = std::sqrt(vNFiberHole_Shash1);
+    G4double step_1 = vShashSize / holesPerRow_1;
     G4double startOffset_1 = step_1 / 2.0;
-    for (G4int i = 0; i < vNFiberHole; i++) {
+    for (G4int i = 0; i < vNFiberHole_Shash1; i++) {
         G4int col = i % holesPerRow_1;
         G4int row = i / holesPerRow_1;
         G4double x_hole = -(vShashSize/2.0) + startOffset_1 + col * step_1;
@@ -560,10 +560,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     auto fHoleSolid_2 = new G4Tubs("HoleTubs_2", 0., kHoleDiameter / 2., vShashHoleLength / 2., 0, 360);
     fHoleLogical_2 = new G4LogicalVolume(fHoleSolid_2, air, "HoleLogical_2");
     G4VPhysicalVolume *fHolePhysical_2;
-    G4int holesPerRow_2 = std::sqrt(vNFiberHole);
-    G4double step_2 = vShashSize / holesPerRow;
+    G4int holesPerRow_2 = std::sqrt(vNFiberHole_Shash2);
+    G4double step_2 = vShashSize / holesPerRow_2;
     G4double startOffset_2 = step_2 / 2.0;
-    for (G4int i = 0; i < vNFiberHole; i++) {
+    for (G4int i = 0; i < vNFiberHole_Shash2; i++) {
         G4int col = i % holesPerRow_2;
         G4int row = i / holesPerRow_2;
         G4double x_hole = -(vShashSize/2.0) + startOffset_2 + col * step_2;
@@ -985,8 +985,16 @@ void DetectorConstruction::SetNewValueInt(G4String key, G4int value){
         vNShashLayer = value;
         G4cout << "Set NShashLayer value = " << value << G4endl;
     }
-    else if(key == "NFiberHole"){
-        vNFiberHole = value;
+    else if(key == "NFiberHole_WSci"){
+        vNFiberHole_WSci = value;
+        G4cout << "Set NFiberHole(WSci) value = " << value << G4endl;
+    }
+    else if(key == "NFiberHole_Shash1"){
+        vNFiberHole_Shash1 = value;
+        G4cout << "Set NFiberHole value = " << value << G4endl;
+    }
+    else if(key == "NFiberHole_Shash2"){
+        vNFiberHole_Shash2= value;
         G4cout << "Set NFiberHole value = " << value << G4endl;
     }
     G4RunManager::GetRunManager()->GeometryHasBeenModified(); // 是一个用于标记几何结构已被修改的方法。它是用来通知 Geant4 几何发生了变化，需要在下一个run中重新初始化几何结构。 告知 Geant4 需要更新几何
