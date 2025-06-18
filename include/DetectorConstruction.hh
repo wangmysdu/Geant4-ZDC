@@ -147,7 +147,9 @@ private:
     G4double vShashRodLength;
 
     // Fiber
-    G4int vNFiberHole = kNFiberHole;
+    G4int vNFiberHole_WSci = kNFiberHole;
+    G4int vNFiberHole_Shash1 = kNFiberHole;
+    G4int vNFiberHole_Shash2 = kNFiberHole;
     
     
 

@@ -66,8 +66,14 @@ DetectorMessenger::DetectorMessenger(DetectorConstruction* Det) : fDetectorConst
   vShashSize->AvailableForStates(G4State_PreInit, G4State_Idle); 
 
   //Fiber
-  vNFiberHole = new G4UIcmdWithALongInt("/det/NFiberHole", this);
-  vNFiberHole->AvailableForStates(G4State_PreInit, G4State_Idle); 
+  vNFiberHole_WSci = new G4UIcmdWithALongInt("/det/NFiberHole_WSci", this);
+  vNFiberHole_WSci->AvailableForStates(G4State_PreInit, G4State_Idle); 
+
+  vNFiberHole_Shash1 = new G4UIcmdWithALongInt("/det/NFiberHole_Shash1", this);
+  vNFiberHole_Shash1->AvailableForStates(G4State_PreInit, G4State_Idle); 
+
+  vNFiberHole_Shash2 = new G4UIcmdWithALongInt("/det/NFiberHole_Shash2", this);
+  vNFiberHole_Shash2->AvailableForStates(G4State_PreInit, G4State_Idle); 
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -130,8 +136,14 @@ void DetectorMessenger::SetNewValue(G4UIcommand* command, G4String newValue)
   }
 
   //Fiber
-  else if (command == vNFiberHole) {
-    fDetectorConstruction->SetNewValueInt("NFiberHole", vNFiberHole->GetNewLongIntValue(newValue));
+  else if (command == vNFiberHole_WSci) {
+    fDetectorConstruction->SetNewValueInt("NFiberHole_WSci", vNFiberHole_WSci->GetNewLongIntValue(newValue));
+  }
+  else if (command == vNFiberHole_Shash1) {
+    fDetectorConstruction->SetNewValueInt("NFiberHole_Shash1", vNFiberHole_Shash1->GetNewLongIntValue(newValue));
+  }
+  else if (command == vNFiberHole_Shash2) {
+    fDetectorConstruction->SetNewValueInt("NFiberHole_Shash2", vNFiberHole_Shash2->GetNewLongIntValue(newValue));
   }
 
 

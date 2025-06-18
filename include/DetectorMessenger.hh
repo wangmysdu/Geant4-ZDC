@@ -51,7 +51,9 @@ class DetectorMessenger : public G4UImessenger
     G4UIcmdWithADoubleAndUnit* vShashLeadThick = nullptr;
     G4UIcmdWithADoubleAndUnit* vShashSize = nullptr;
 
-    G4UIcmdWithALongInt* vNFiberHole = nullptr;
+    G4UIcmdWithALongInt* vNFiberHole_WSci = nullptr;
+    G4UIcmdWithALongInt* vNFiberHole_Shash1 = nullptr;
+    G4UIcmdWithALongInt* vNFiberHole_Shash2 = nullptr;
 };
 
 }  // namespace ZDC
